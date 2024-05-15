@@ -23,13 +23,36 @@ namespace DedSad.View.Pages
         private async Task Init()
         {
             childrens.Clear();
+            var parentsRepo = new ParentsRepository();
             var repo = new ChildrensRepository();
             var groupRepo = new GroupRepository();
+            var parents = await parentsRepo.GetAllAsync();
+            var dictionary = new Dictionary<int, Parents>(parents.Count);
+            foreach(var item in parents)
+            {
+                dictionary.Add(item.id_child, item);
+            }
             var items = await repo.GetAllAsync();
             var groups = await groupRepo.GetAllAsync();
+            groups.Insert(0, new Group() { group_name = "Все" });
+            foreach (var child in items)
+            {
+                var parent = dictionary[child.id_children];
+                if(parent == null)
+                {
+                    child.female = "Нет";
+                    child.man = "Нет";
+                }
+                else
+                {
+                    child.man = parent.father;
+                    child.female = parent.mother;
+                }
+            }
             childrens.AddRange(items);
             ListViewChildren.ItemsSource = items;
             GroupCB.ItemsSource = groups;
+            GroupCB.SelectedIndex = 0;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -55,7 +78,7 @@ namespace DedSad.View.Pages
         {
             if(ListViewChildren.SelectedItem is Childrens child)
             {
-                //AppFrame.frameMain.Navigate(new AddEdit(child));
+                AppFrame.frameMain.Navigate(new AddEdit(child));
             }
         }
 
@@ -122,7 +145,7 @@ namespace DedSad.View.Pages
         {
             var list = childrens.Where(x => x.person.FullName.ToLower().Contains(SearchTB.Text.ToLower())).ToList();
 
-            if(GroupCB.SelectedItem is Group group)
+            if(GroupCB.SelectedItem is Group group && group.id_group != 0)
             {
                 list = list.Where(x => x.id_group == group.id_group).ToList();
             }

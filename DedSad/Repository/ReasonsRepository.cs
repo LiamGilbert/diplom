@@ -14,35 +14,35 @@ namespace DedSad.Repository
         public async Task<List<Reasons>> GetAllAsync()
         {
             HttpClient client = new HttpClient();
-            var list = await client.GetFromJsonAsync<List<Reasons>>(ServerConstants.host + "v1/reasons");
+            var list = await client.GetFromJsonAsync<List<Reasons>>(ServerConstants.Host + "v1/reasons");
             return list;
         }
 
         public async Task<Reasons> GetById(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.GetFromJsonAsync<Reasons>(ServerConstants.host + "v1/reasons/" + id);
+            var item = await client.GetFromJsonAsync<Reasons>(ServerConstants.Host + "v1/reasons/" + id);
             return item;
         }
 
         public async Task<Reasons> Update(Reasons reasons)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PutAsJsonAsync<Reasons>(ServerConstants.host + "v1/reasons", reasons);
+            var item = await client.PutAsJsonAsync<Reasons>(ServerConstants.Host + "v1/reasons", reasons);
             return await item.Content.ReadFromJsonAsync<Reasons>();
         }
 
         public async Task<Reasons> Create(Reasons reasons)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Reasons>(ServerConstants.host + "v1/reasons", reasons);
+            var item = await client.PostAsJsonAsync<Reasons>(ServerConstants.Host + "v1/reasons", reasons);
             return await item.Content.ReadFromJsonAsync<Reasons>();
         }
 
         public async Task<Reasons> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.DeleteFromJsonAsync<Reasons>(ServerConstants.host + "v1/reasons/" + id);
+            var item = await client.DeleteFromJsonAsync<Reasons>(ServerConstants.Host + "v1/reasons/" + id);
             return item;
         }
     }

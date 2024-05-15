@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace DedSad.Models
 {
@@ -15,6 +10,14 @@ namespace DedSad.Models
 
         public Person person { get; set; }
         public Group group { get; set; }
-        public Parents parent {  get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+        public string female { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+        public string man { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+        public string sex_name => person != null && person.sex ? "М" : "Ж";
     }
 }

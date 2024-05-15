@@ -18,114 +18,122 @@ using System.Windows.Shapes;
 namespace DedSad.View.Pages
 {
     public partial class AddEdit : Page
-    {/*
-        private readonly Childrens childrens;
+    {
+        private readonly Childrens children;
         
         public AddEdit(): this(new Childrens())
         {
-            childrens.person = new Person()
+            NonUpdatableFields.Visibility = Visibility.Visible;
+            children.person = new Person()
             {
-                sex = new Sex()
             };
-            childrens.group = new Group();
-            childrens.parent = new Parents();
+            children.group = new Group();
         }
 
         public AddEdit(Childrens childrens)
         {
             InitializeComponent();
-            this.childrens = childrens;
+            this.children = childrens;
             Init();
         }
 
         private async void Init()
         {
-            var personRepo = new PersonRepository();
             var groupRepo = new GroupRepository();
-            var parents = (await personRepo.GetAllAsync()).Where(x => x.role.role_name == "родитель").ToList();
-            Mothers.ItemsSource = parents.Where(x => x.sex.sex_name == "женский").ToList();
-            Fathers.ItemsSource = parents.Where(x => x.sex.sex_name == "мужской").ToList();
-
-            var sexs = await sexRepo.GetAllAsync();
-            Sex.ItemsSource = sexs;
-
             var groups = await groupRepo.GetAllAsync();
+
             Group.ItemsSource = groups;
 
-            Mothers.SelectedValue = childrens.parents.id_mother;
-            Fathers.SelectedValue = childrens.parents.id_father;
-            Sex.SelectedValue = childrens.person.id_sex;
-            Group.SelectedValue = childrens.id_group;
-            Name.Text = childrens.person.name;
-            LastName.Text = childrens.person.lastname;
-            Patronymic.Text = childrens.person.patronymic;
-            BirthDay.SelectedDate = childrens.person.birth_date;
-
+            Group.SelectedValue = children.id_group;
+            Sex.IsChecked = children.person.sex;
+            Name.Text = children.person.firstname;
+            LastName.Text = children.person.lastname;
+            Patronymic.Text = children.person.patronymic;
         }
-        */
-        private /*async*/ void Save_Button_Click(object sender, RoutedEventArgs e)
+        
+        private async void Save_Button_Click(object sender, RoutedEventArgs e)
         {
-            /*try
+            try
             {
                 await SaveChanges();
             }
             catch(Exception)
             {
                 MessageBox.Show("Ошибка, что-то не так!");
-            }*/
+            }
         }
-        /*
+        
         private async Task SaveChanges()
         {
             var parentsRepo = new ParentsRepository();
             var personRepo = new PersonRepository();
             var childrenRepo = new ChildrensRepository();
+            var addressRepo = new AddressRepository();
 
-            var mother = Mothers.SelectedItem as Person;
-            var father = Fathers.SelectedItem as Person;
-            var sex = Sex.SelectedItem as Sex;
             var group = Group.SelectedItem as Group;
+            
 
-            childrens.parents.id_father = father.id_person;
-            childrens.parents.id_mother = mother.id_person;
+            children.person.firstname = Name.Text;
+            children.person.lastname = LastName.Text;
+            children.person.patronymic = Patronymic.Text;
+            children.person.sex = Sex.IsChecked.Value;
+            children.person.id_role = 3;
+            children.id_group = group.id_group;
 
-            childrens.person.id_address = mother.id_address;
-            childrens.person.name = Name.Text;
-            childrens.person.lastname = LastName.Text;
-            childrens.person.patronymic = Patronymic.Text;
-            childrens.person.birth_date = BirthDay.SelectedDate.Value;
-            childrens.person.id_sex = sex.id_sex;
-            childrens.person.id_role = 3;
-            childrens.id_medcomission = 1;
-            childrens.id_group = group.id_group;
-            if (childrens.id_children == 0)
+            if (children.id_children == 0)
             {
+                var partsAddresses = Addresses.Text.Split(',');
 
-                var parentsResult = await parentsRepo.Create(childrens.parents);
-                childrens.id_parent = parentsResult.id_parent;
-                var person = await personRepo.Create(childrens.person);
-                childrens.id_person = person.id_person;
+                if (partsAddresses.Length != 3)
+                {
+                    MessageBox.Show("Неправильный формат адреса");
+                    return;
+                }
+                var address = new Address
+                {
+                    town = partsAddresses[0],
+                    street = partsAddresses[1],
+                    house_number = partsAddresses[2]
+                };
+                var createdAddress = await addressRepo.Create(address);
+                children.person.id_address = createdAddress.id_address;
+                var person = await personRepo.Create(children.person);
+                children.id_person = person.id_person;
 
-                var result = await childrenRepo.Create(childrens);
+                var result = await childrenRepo.Create(children);
+                var parents = new Parents
+                {
+                    father = Fathers.Text,
+                    mother = Mothers.Text,
+                    id_child = result.id_children
+                };
+                var createdParents = await parentsRepo.Create(parents);
             }
             else
             {
-                var parentsResult = await parentsRepo.Update(childrens.parents);
-                childrens.id_parent = parentsResult.id_parent;
+                var person = await personRepo.Update(children.person);
+                children.id_person = person.id_person;
 
-                var person = await personRepo.Update(childrens.person);
-                childrens.id_person = person.id_person;
-
-                var result = await childrenRepo.Update(childrens);
+                var result = await childrenRepo.Update(children);
             }
 
 
             AppFrame.frameMain.Navigate(new Admin());
         }
-        */
+        
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            //AppFrame.frameMain.Navigate(new Admin());
+            AppFrame.frameMain.Navigate(new Admin());
+        }
+
+        private void Sex_Checked(object sender, RoutedEventArgs e)
+        {
+            Sex.Content = "М";
+        }
+
+        private void Sex_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Sex.Content = "Ж";
         }
     }
 }

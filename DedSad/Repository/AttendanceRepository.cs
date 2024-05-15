@@ -14,35 +14,35 @@ namespace DedSad.Repository
         public async Task<List<Attendance>> GetAllAsync()
         {
             HttpClient client = new HttpClient();
-            var list = await client.GetFromJsonAsync<List<Attendance>>(ServerConstants.host + "v1/attendance");
+            var list = await client.GetFromJsonAsync<List<Attendance>>(ServerConstants.Host + "v1/attendance");
             return list;
         }
 
         public async Task<Attendance> GetById(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.GetFromJsonAsync<Attendance>(ServerConstants.host + "v1/attendance/" + id);
+            var item = await client.GetFromJsonAsync<Attendance>(ServerConstants.Host + "v1/attendance/" + id);
             return item;
         }
 
         public async Task<Attendance> Update(Attendance attendance)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PutAsJsonAsync<Attendance>(ServerConstants.host + "v1/attendance", attendance);
+            var item = await client.PutAsJsonAsync<Attendance>(ServerConstants.Host + "v1/attendance", attendance);
             return await item.Content.ReadFromJsonAsync<Attendance>();
         }
 
         public async Task<Attendance> Create(Attendance attendance)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Attendance>(ServerConstants.host + "v1/attendance", attendance);
+            var item = await client.PostAsJsonAsync<Attendance>(ServerConstants.Host + "v1/attendance", attendance);
             return await item.Content.ReadFromJsonAsync<Attendance>();
         }
 
         public async Task<Attendance> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.DeleteFromJsonAsync<Attendance>(ServerConstants.host + "v1/attendance/" + id);
+            var item = await client.DeleteFromJsonAsync<Attendance>(ServerConstants.Host + "v1/attendance/" + id);
             return item;
         }
     }

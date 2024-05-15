@@ -14,42 +14,42 @@ namespace DedSad.Repository
         public async Task<List<Autorization>> GetAllAsync()
         {
             HttpClient client = new HttpClient();
-            var list = await client.GetFromJsonAsync<List<Autorization>>(ServerConstants.host + "v1/authorization");
+            var list = await client.GetFromJsonAsync<List<Autorization>>(ServerConstants.Host + "v1/authorization");
             return list;
         }
 
         public async Task<Autorization> GetById(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.GetFromJsonAsync<Autorization>(ServerConstants.host + "v1/authorization/" + id);
+            var item = await client.GetFromJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization/" + id);
             return item;
         }
 
         public async Task<Autorization> Update(Autorization autorization)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PutAsJsonAsync<Autorization>(ServerConstants.host + "v1/authorization", autorization);
+            var item = await client.PutAsJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization", autorization);
             return await item.Content.ReadFromJsonAsync<Autorization>();
         }
 
         public async Task<Autorization> Create(Autorization autorization)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Autorization>(ServerConstants.host + "v1/authorization", autorization);
+            var item = await client.PostAsJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization", autorization);
             return await item.Content.ReadFromJsonAsync<Autorization>();
         }
 
         public async Task<Autorization> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.DeleteFromJsonAsync<Autorization>(ServerConstants.host + "v1/authorization/" + id);
+            var item = await client.DeleteFromJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization/" + id);
             return item;
         }
 
         public async Task<Autorization> Login(Autorization autorization)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Autorization>(ServerConstants.host + "v1/authorization/login", autorization);
+            var item = await client.PostAsJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization/login", autorization);
             if(item.IsSuccessStatusCode == false)
             {
                 throw new Exception();

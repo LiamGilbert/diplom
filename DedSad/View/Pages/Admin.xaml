@@ -20,8 +20,9 @@
                 <GridView>
                     <GridViewColumn Header="ФИО" Width="Auto" DisplayMemberBinding="{Binding person.FullName}"/>
                     <GridViewColumn Header="Группа" Width="Auto" DisplayMemberBinding="{Binding group.group_name}"/>
-                    <GridViewColumn Header="Мама" Width="Auto" DisplayMemberBinding="{Binding parents.mother.FullName}"/>
-                    <GridViewColumn Header="Папа" Width="Auto"  DisplayMemberBinding="{Binding parents.father.FullName}"/>
+                    <GridViewColumn Header="Группа" Width="Auto" DisplayMemberBinding="{Binding sex_name}"/>
+                    <GridViewColumn Header="Мама" Width="Auto" DisplayMemberBinding="{Binding female}"/>
+                    <GridViewColumn Header="Папа" Width="Auto"  DisplayMemberBinding="{Binding man}"/>
                     <GridViewColumn Header="Адрес проживания" Width="Auto" DisplayMemberBinding="{Binding person.address.FullName}"/>
                 </GridView>
             </ListView.View>

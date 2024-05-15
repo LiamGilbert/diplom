@@ -15,35 +15,35 @@ namespace DedSad.Repository
         public async Task<List<Person>> GetAllAsync()
         {
             HttpClient client = new HttpClient();
-            var list = await client.GetFromJsonAsync<List<Person>>(ServerConstants.host + "v1/people");
+            var list = await client.GetFromJsonAsync<List<Person>>(ServerConstants.Host + "v1/people");
             return list;
         }
 
         public async Task<Person> GetById(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.GetFromJsonAsync<Person>(ServerConstants.host + "v1/people/" + id);
+            var item = await client.GetFromJsonAsync<Person>(ServerConstants.Host + "v1/people/" + id);
             return item;
         }
 
         public async Task<Person> Update(Person person)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PutAsJsonAsync<Person>(ServerConstants.host + "v1/people", person);
+            var item = await client.PutAsJsonAsync<Person>(ServerConstants.Host + "v1/people", person);
             return await item.Content.ReadFromJsonAsync<Person>();
         }
 
         public async Task<Person> Create(Person person)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Person>(ServerConstants.host + "v1/people", person);
+            var item = await client.PostAsJsonAsync<Person>(ServerConstants.Host + "v1/people", person);
             return await item.Content.ReadFromJsonAsync<Person>();
         }
 
         public async Task<Person> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.DeleteFromJsonAsync<Person>(ServerConstants.host + "v1/people/" + id);
+            var item = await client.DeleteFromJsonAsync<Person>(ServerConstants.Host + "v1/people/" + id);
             return item;
         }
     }

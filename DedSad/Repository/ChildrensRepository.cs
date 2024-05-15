@@ -14,35 +14,35 @@ namespace DedSad.Repository
         public async Task<List<Childrens>> GetAllAsync()
         {
             HttpClient client = new HttpClient();
-            var list = await client.GetFromJsonAsync<List<Childrens>>(ServerConstants.host + "v1/childrens");
+            var list = await client.GetFromJsonAsync<List<Childrens>>(ServerConstants.Host + "v1/childrens");
             return list;
         }
 
         public async Task<Childrens> GetById(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.GetFromJsonAsync<Childrens>(ServerConstants.host + "v1/childrens/" + id);
+            var item = await client.GetFromJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens/" + id);
             return item;
         }
 
         public async Task<Childrens> Update(Childrens childrens)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PutAsJsonAsync<Childrens>(ServerConstants.host + "v1/childrens", childrens);
+            var item = await client.PutAsJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens", childrens);
             return await item.Content.ReadFromJsonAsync<Childrens>();
         }
 
         public async Task<Childrens> Create(Childrens childrens)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Childrens>(ServerConstants.host + "v1/childrens", childrens);
+            var item = await client.PostAsJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens", childrens);
             return await item.Content.ReadFromJsonAsync<Childrens>();
         }
 
         public async Task<Childrens> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.DeleteFromJsonAsync<Childrens>(ServerConstants.host + "v1/childrens/" + id);
+            var item = await client.DeleteFromJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens/" + id);
             return item;
         }
     }
