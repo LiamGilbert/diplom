@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DedSad.View.Pages
@@ -124,6 +123,17 @@ namespace DedSad.View.Pages
 
         private void GroupCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (GroupCB.SelectedItem is Group group) 
+            {
+                if (group.group_name == "Все")
+                {
+                    ListViewChildren.ItemsSource = _attendances.ToList();
+                }
+                else
+                {
+                    ListViewChildren.ItemsSource = _attendances.Where(x=>x.children.id_group == group.id_group).ToList();
+                }
+            }
 
         }
     }

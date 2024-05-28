@@ -21,6 +21,7 @@
                 <DataGridTextColumn Header="Группа" Width="*" Binding="{Binding group.group_name}"/>
                 <DataGridTextColumn Header="Пол" Width="*" Binding="{Binding sex_name}"/>
                 <DataGridTextColumn Header="Адрес проживания" Width="*" Binding="{Binding person.address.FullName}"/>
+                <DataGridTextColumn Header="Сертификат о рождении" Width="*" Binding="{Binding birth_sertificate}"/>
                 <DataGridTemplateColumn Header="Управление">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

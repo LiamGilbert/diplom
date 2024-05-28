@@ -40,6 +40,7 @@ namespace DedSad.View.Windowes
             Name.Text = _children.person.firstname;
             LastName.Text = _children.person.lastname;
             Patronymic.Text = _children.person.patronymic;
+            BirthDayDocument.Text = _children.birth_sertificate;
         }
 
         private async void Save_Button_Click(object sender, RoutedEventArgs e)
@@ -69,6 +70,7 @@ namespace DedSad.View.Windowes
             _children.person.patronymic = Patronymic.Text;
             _children.person.sex = Sex.IsChecked.Value;
             _children.person.id_role = 3;
+            _children.birth_sertificate = BirthDayDocument.Text;
             _children.id_group = group.id_group;
 
             if (_children.id_children == 0)
@@ -96,7 +98,8 @@ namespace DedSad.View.Windowes
                 {
                     father = Fathers.Text,
                     mother = Mothers.Text,
-                    id_child = result.id_children
+                    id_child = result.id_children,
+                    home_telephone = Phone.Text
                 };
                 var createdParents = await parentsRepo.Create(parents);
             }
@@ -109,12 +112,12 @@ namespace DedSad.View.Windowes
             }
 
 
-            AppFrame.frameMain.Navigate(new AdminPage());
+            Close();
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.frameMain.Navigate(new AdminPage());
+            Close();
         }
 
         private void Sex_Checked(object sender, RoutedEventArgs e)

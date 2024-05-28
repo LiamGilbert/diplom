@@ -18,12 +18,16 @@
                 <TextBlock Text="Пол"/>
                 <CheckBox x:Name="Sex" Content="М" IsChecked="True" Checked="Sex_Checked" Unchecked="Sex_Unchecked"/>
                 <TextBlock Text="Группа"/>
+                <TextBlock Text="Свидетельство о рождении"/>
+                <TextBox x:Name="BirthDayDocument" />
                 <ComboBox x:Name="Group" DisplayMemberPath="group_name" SelectedValuePath="id_group"/>
                 <StackPanel x:Name="NonUpdatableFields" Visibility="Collapsed">
                     <TextBlock Text="Мать"/>
                     <TextBox x:Name="Mothers"/>
                     <TextBlock Text="Отец"/>
                     <TextBox x:Name="Fathers" />
+                    <TextBlock Text="Телефон"/>
+                    <TextBox x:Name="Phone" />
                     <WrapPanel>
                         <TextBlock Text="Адрес "/>
                         <TextBlock Text="Н. пункт, Улица, Дом" Foreground="DarkGray" FontSize="12"/>

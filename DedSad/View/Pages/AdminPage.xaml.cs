@@ -26,7 +26,6 @@ namespace DedSad.View.Pages
         private async Task Init()
         {
             _childrens.Clear();
-            var parentsRepo = new ParentsRepository();
             var repo = new ChildrensRepository();
             var groupRepo = new GroupRepository();
 
@@ -41,7 +40,9 @@ namespace DedSad.View.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.frameMain.Navigate(new AddEditWindow());
+            AddEditWindow window = new AddEditWindow();
+            window.ShowDialog();
+            Init();
         }
 
         private async void DdeleteButton_Click(object sender, RoutedEventArgs e)
@@ -62,7 +63,9 @@ namespace DedSad.View.Pages
         {
             if (ListViewChildren.SelectedItem is Children child)
             {
-                AppFrame.frameMain.Navigate(new AddEditWindow(child));
+                AddEditWindow window = new AddEditWindow(child);
+                window.ShowDialog();
+                Init();
             }
         }
 

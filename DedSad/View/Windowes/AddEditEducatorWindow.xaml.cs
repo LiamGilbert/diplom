@@ -14,6 +14,7 @@ namespace DedSad.View.Windowes
         public AddEditEducatorWindow() : this(new Person())
         {
             Address.Visibility = Visibility.Visible;
+            AuthorizationBlock.Visibility = Visibility.Visible;
         }
 
         public AddEditEducatorWindow(Person person)
@@ -22,8 +23,6 @@ namespace DedSad.View.Windowes
             _person = person;
             DataContext = person;
         }
-
-
 
         private void Sex_Checked(object sender, RoutedEventArgs e)
         {
@@ -52,6 +51,7 @@ namespace DedSad.View.Windowes
         {
             var personRepo = new PersonRepository();
             var addressRepo = new AddressRepository();
+            var authRepo = new AutorizationRepository();
 
             if (_person.id_person == 0)
             {
@@ -71,7 +71,14 @@ namespace DedSad.View.Windowes
                 };
                 var newAddress = await addressRepo.Create(address);
                 _person.id_address = newAddress.id_address;
-                await personRepo.Create(_person);
+                var person = await personRepo.Create(_person);
+                var authorization = new Authorization()
+                {
+                    login = LoginField.Text,
+                    password = PasswordField.Text,
+                    id_person = person.id_person
+                };
+                await authRepo.Create(authorization);
             }
             else
             {
