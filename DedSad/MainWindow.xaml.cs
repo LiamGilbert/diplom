@@ -1,5 +1,5 @@
 ﻿using DedSad.View;
-using DedSad.View.Pages;
+using DedSad.View.Windowes;
 using System.Windows;
 
 namespace DedSad
@@ -10,7 +10,9 @@ namespace DedSad
         {
             InitializeComponent();
             AppFrame.frameMain = FrmMain;
-            FrmMain.Navigate(new Login());
+            LoginWindow window = new LoginWindow();
+            window.Show();
+            this.Close();
         }
     }
 }

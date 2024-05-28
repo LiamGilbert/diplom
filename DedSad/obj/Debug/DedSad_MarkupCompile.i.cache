@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Projects\WPFProjects\diplom\DedSad\obj\Debug\
+C:\Users\liamtheraccoon\Desktop\DedSad\DedSad\obj\Debug\
 DedSad
 none
 false
 DEBUG;TRACE
-D:\Projects\WPFProjects\diplom\DedSad\App.xaml
-51232141465
+C:\Users\liamtheraccoon\Desktop\DedSad\DedSad\App.xaml
+10-1427230894
 
-32-1617963240
-2845473861
-MainWindow.xaml;View\Pages\AddEdit.xaml;View\Pages\Admin.xaml;View\Pages\Attendance.xaml;View\Pages\Login.xaml;
+371598987031
+28-1709480769
+MainWindow.xaml;View\Pages\AdminPage.xaml;View\Pages\AttendancePage.xaml;View\Pages\EducatorsPage.xaml;View\Pages\GroupsPage.xaml;View\Windowes\AddEditEducatorWindow.xaml;View\Windowes\AddEditWindow.xaml;View\Windowes\GroupEditWindow.xaml;View\Windowes\LoginWindow.xaml;View\Windowes\ParentsWindow.xaml;
 
 True
 

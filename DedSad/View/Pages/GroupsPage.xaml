@@ -1,0 +1,32 @@
+﻿<Page x:Class="DedSad.View.Pages.GroupsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DedSad.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GroupsPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+        </StackPanel>
+
+        <ListView Grid.Column="1" Name="ListViewGroup">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Группа" Width="Auto"/>
+                    <GridViewColumn Header="Тип" Width="Auto"/>
+                    <GridViewColumn Header="Воспитатель" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel>
+            <Button Background="Red" Content="Назад" Margin="0 30 0 0" Click="Button_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

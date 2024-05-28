@@ -109,17 +109,32 @@
     <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\ServerConstants.cs" />
     <Compile Include="View\AppFrame.cs" />
-    <Compile Include="View\Pages\AddEdit.xaml.cs">
-      <DependentUpon>AddEdit.xaml</DependentUpon>
+    <Compile Include="View\Pages\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Admin.xaml.cs">
-      <DependentUpon>Admin.xaml</DependentUpon>
+    <Compile Include="View\Pages\AttendancePage.xaml.cs">
+      <DependentUpon>AttendancePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Attendance.xaml.cs">
-      <DependentUpon>Attendance.xaml</DependentUpon>
+    <Compile Include="View\Pages\EducatorsPage.xaml.cs">
+      <DependentUpon>EducatorsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="View\Pages\GroupsPage.xaml.cs">
+      <DependentUpon>GroupsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windowes\AddEditEducatorWindow.xaml.cs">
+      <DependentUpon>AddEditEducatorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windowes\AddEditWindow.xaml.cs">
+      <DependentUpon>AddEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windowes\GroupEditWindow.xaml.cs">
+      <DependentUpon>GroupEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windowes\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windowes\ParentsWindow.xaml.cs">
+      <DependentUpon>ParentsWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -133,19 +148,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Pages\AddEdit.xaml">
+    <Page Include="View\Pages\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Admin.xaml">
+    <Page Include="View\Pages\AttendancePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Attendance.xaml">
+    <Page Include="View\Pages\EducatorsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Login.xaml">
+    <Page Include="View\Pages\GroupsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windowes\AddEditEducatorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windowes\AddEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windowes\GroupEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windowes\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windowes\ParentsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
