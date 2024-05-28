@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DedSad.View.Windowes"
         mc:Ignorable="d"
-        Title="ParentsWindow" Height="450" Width="800">
+        Title="ParentsWindow" Background="AliceBlue" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dgParent" AutoGenerateColumns="False" GridLinesVisibility="None" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Мать"/>
+                <DataGridTextColumn Header="Отец"/>
+                <DataGridTextColumn Header="Адрес проживания"/>
+                <DataGridTextColumn Header="Контактный телефон"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button HorizontalAlignment="Right" Height="20" Width="50" Margin="0 0 10 0" Content="Назад" Click="Back_Button_Click" Background="Aquamarine"/>
     </Grid>
 </Window>
