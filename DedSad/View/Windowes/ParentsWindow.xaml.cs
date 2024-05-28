@@ -1,27 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DedSad.Models;
+using DedSad.Repository;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DedSad.View.Windowes
 {
-    /// <summary>
-    /// Логика взаимодействия для ParentsWindow.xaml
-    /// </summary>
     public partial class ParentsWindow : Window
     {
-        public ParentsWindow()
+        public ParentsWindow(Children children)
         {
             InitializeComponent();
+            Initialize(children);
+        }
+
+        private async void Initialize(Children children)
+        {
+            var repo = new ParentsRepository();
+            var items = (await repo.GetAllAsync()).Where(x => x.id_child == children.id_children).ToList();
+            dgParent.ItemsSource = items;
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

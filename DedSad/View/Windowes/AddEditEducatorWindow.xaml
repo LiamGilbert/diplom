@@ -9,18 +9,20 @@
     <Grid>
         <StackPanel Width="200">
             <TextBlock Text="Фамилия"/>
-            <TextBox x:Name="LastName"/>
+            <TextBox x:Name="LastName" Text="{Binding lastname}"/>
             <TextBlock Text="Имя"/>
-            <TextBox x:Name="Name"/>
+            <TextBox x:Name="Name" Text="{Binding firstname}"/>
             <TextBlock Text="Отчество"/>
-            <TextBox x:Name="Patronymic"/>
+            <TextBox x:Name="Patronymic" Text="{Binding patronymic}"/>
             <TextBlock Text="Пол"/>
-            <CheckBox x:Name="Sex" Content="М" IsChecked="True" Checked="Sex_Checked" Unchecked="Sex_Unchecked"/>
-            <TextBlock Text="Адрес "/>
-            <TextBlock Text="Н. пункт, Улица, Дом" Foreground="DarkGray" FontSize="12"/>
-            <TextBox x:Name="Addresses"/>
-            <Button Content="Сохранить" Click="Save_Button_Click" Margin="0 10 0 0"/>
-            <Button Content="Назад" Click="Back_Button_Click" Margin="0 10 0 0"/>
+            <CheckBox x:Name="Sex" Content="Ж" IsChecked="{Binding sex}" Checked="Sex_Checked" Unchecked="Sex_Unchecked"/>
+            <StackPanel x:Name="Address" Visibility="Collapsed">
+                <TextBlock Text="Адрес "/>
+                <TextBlock Text="Н. пункт, Улица, Дом" Foreground="DarkGray" FontSize="12"/>
+                <TextBox x:Name="Addresses"/>
+            </StackPanel>
+            <Button Content="Сохранить" Click="TrySaveChanges" Margin="0 10 0 0"/>
+            <Button Content="Назад" Click="Back" Margin="0 10 0 0"/>
         </StackPanel>
     </Grid>
 </Window>

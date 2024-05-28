@@ -1,27 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DedSad.Models;
+using DedSad.Repository;
+using DedSad.Utils;
+using System;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DedSad.View.Windowes
 {
-    /// <summary>
-    /// Логика взаимодействия для GroupEditWindow.xaml
-    /// </summary>
     public partial class GroupEditWindow : Window
     {
-        public GroupEditWindow()
+        private readonly Group _group;
+        public GroupEditWindow(Group group)
         {
             InitializeComponent();
+            _group = group;
+            Initialize();
+        }
+
+        private async void Initialize()
+        {
+            var personRepo = new PersonRepository();
+            var typeRepo = new GroupTypesRepository();
+            GroupType.ItemsSource = await typeRepo.GetAllAsync();
+            Educator.ItemsSource = (await personRepo.GetAllAsync()).Where(x => x.role.role.ToLower().Equals("воспитатель")).ToList();
+            DataContext = _group;
+        }
+
+
+        private async void TrySaveChanges(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await SaveChanges();
+            }
+            catch (Exception)
+            {
+                MessageBoxHandler.ShowMessageBoxError("Проверьте введеные данные!");
+            }
+        }
+
+        private async Task SaveChanges()
+        {
+            var groupRepo = new GroupRepository();
+
+            await groupRepo.Update(_group);
+            MessageBoxHandler.ShowMessageBoxInfo("Группа была изменена");
+            Close();
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

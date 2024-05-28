@@ -2,11 +2,12 @@
 
 namespace DedSad.Models
 {
-    public class Childrens
+    public class Children
     {
         public int id_children { get; set; }
         public int id_person { get; set; }
         public int id_group { get; set; }
+        public string birth_sertificate { get; set; }
 
         public Person person { get; set; }
         public Group group { get; set; }

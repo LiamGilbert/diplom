@@ -22,5 +22,7 @@ namespace DedSad.Models
 
         [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
         public string FullName => $"{lastname} {firstname} {patronymic}";
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+        public string sex_name => sex ? "М" : "Ж";
     }
 }

@@ -11,38 +11,38 @@ namespace DedSad.Repository
 {
     internal class ChildrensRepository
     {
-        public async Task<List<Childrens>> GetAllAsync()
+        public async Task<List<Children>> GetAllAsync()
         {
             HttpClient client = new HttpClient();
-            var list = await client.GetFromJsonAsync<List<Childrens>>(ServerConstants.Host + "v1/childrens");
+            var list = await client.GetFromJsonAsync<List<Children>>(ServerConstants.Host + "v1/childrens");
             return list;
         }
 
-        public async Task<Childrens> GetById(int id)
+        public async Task<Children> GetById(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.GetFromJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens/" + id);
+            var item = await client.GetFromJsonAsync<Children>(ServerConstants.Host + "v1/childrens/" + id);
             return item;
         }
 
-        public async Task<Childrens> Update(Childrens childrens)
+        public async Task<Children> Update(Children childrens)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PutAsJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens", childrens);
-            return await item.Content.ReadFromJsonAsync<Childrens>();
+            var item = await client.PutAsJsonAsync<Children>(ServerConstants.Host + "v1/childrens", childrens);
+            return await item.Content.ReadFromJsonAsync<Children>();
         }
 
-        public async Task<Childrens> Create(Childrens childrens)
+        public async Task<Children> Create(Children childrens)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens", childrens);
-            return await item.Content.ReadFromJsonAsync<Childrens>();
+            var item = await client.PostAsJsonAsync<Children>(ServerConstants.Host + "v1/childrens", childrens);
+            return await item.Content.ReadFromJsonAsync<Children>();
         }
 
-        public async Task<Childrens> Delete(int id)
+        public async Task<Children> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.DeleteFromJsonAsync<Childrens>(ServerConstants.Host + "v1/childrens/" + id);
+            var item = await client.DeleteFromJsonAsync<Children>(ServerConstants.Host + "v1/childrens/" + id);
             return item;
         }
     }

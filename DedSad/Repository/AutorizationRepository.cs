@@ -11,50 +11,50 @@ namespace DedSad.Repository
 {
     internal class AutorizationRepository
     {
-        public async Task<List<Autorization>> GetAllAsync()
+        public async Task<List<Authorization>> GetAllAsync()
         {
             HttpClient client = new HttpClient();
-            var list = await client.GetFromJsonAsync<List<Autorization>>(ServerConstants.Host + "v1/authorization");
+            var list = await client.GetFromJsonAsync<List<Authorization>>(ServerConstants.Host + "v1/authorization");
             return list;
         }
 
-        public async Task<Autorization> GetById(int id)
+        public async Task<Authorization> GetById(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.GetFromJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization/" + id);
+            var item = await client.GetFromJsonAsync<Authorization>(ServerConstants.Host + "v1/authorization/" + id);
             return item;
         }
 
-        public async Task<Autorization> Update(Autorization autorization)
+        public async Task<Authorization> Update(Authorization autorization)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PutAsJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization", autorization);
-            return await item.Content.ReadFromJsonAsync<Autorization>();
+            var item = await client.PutAsJsonAsync<Authorization>(ServerConstants.Host + "v1/authorization", autorization);
+            return await item.Content.ReadFromJsonAsync<Authorization>();
         }
 
-        public async Task<Autorization> Create(Autorization autorization)
+        public async Task<Authorization> Create(Authorization autorization)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization", autorization);
-            return await item.Content.ReadFromJsonAsync<Autorization>();
+            var item = await client.PostAsJsonAsync<Authorization>(ServerConstants.Host + "v1/authorization", autorization);
+            return await item.Content.ReadFromJsonAsync<Authorization>();
         }
 
-        public async Task<Autorization> Delete(int id)
+        public async Task<Authorization> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            var item = await client.DeleteFromJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization/" + id);
+            var item = await client.DeleteFromJsonAsync<Authorization>(ServerConstants.Host + "v1/authorization/" + id);
             return item;
         }
 
-        public async Task<Autorization> Login(Autorization autorization)
+        public async Task<Authorization> Login(Authorization autorization)
         {
             HttpClient client = new HttpClient();
-            var item = await client.PostAsJsonAsync<Autorization>(ServerConstants.Host + "v1/authorization/login", autorization);
+            var item = await client.PostAsJsonAsync<Authorization>(ServerConstants.Host + "v1/authorization/login", autorization);
             if(item.IsSuccessStatusCode == false)
             {
                 throw new Exception();
             }
-            return await item.Content.ReadFromJsonAsync<Autorization>();
+            return await item.Content.ReadFromJsonAsync<Authorization>();
         }
     }
 }

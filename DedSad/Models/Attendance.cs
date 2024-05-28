@@ -14,7 +14,7 @@ namespace DedSad.Models
         public string mark { get; set; } = String.Empty;
         public int? id_reason { get; set; }
 
-        public Childrens children { get; set; }
+        public Children children { get; set; }
 
         public Reasons reason { get; set; }
     }

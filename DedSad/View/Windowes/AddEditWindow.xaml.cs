@@ -1,39 +1,30 @@
 ﻿using DedSad.Models;
 using DedSad.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using DedSad.View.Pages;
+using DedSad.Utils;
 
 namespace DedSad.View.Windowes
 {
     public partial class AddEditWindow : Window
     {
-        private readonly Childrens children;
+        private readonly Children _children;
 
-        public AddEditWindow() : this(new Childrens())
+        public AddEditWindow() : this(new Children())
         {
             NonUpdatableFields.Visibility = Visibility.Visible;
-            children.person = new Person()
+            _children.person = new Person()
             {
             };
-            children.group = new Group();
+            _children.group = new Group();
         }
 
-        public AddEditWindow(Childrens childrens)
+        public AddEditWindow(Children childrens)
         {
             InitializeComponent();
-            this.children = childrens;
+            this._children = childrens;
             Init();
         }
 
@@ -44,11 +35,11 @@ namespace DedSad.View.Windowes
 
             Group.ItemsSource = groups;
 
-            Group.SelectedValue = children.id_group;
-            Sex.IsChecked = children.person.sex;
-            Name.Text = children.person.firstname;
-            LastName.Text = children.person.lastname;
-            Patronymic.Text = children.person.patronymic;
+            Group.SelectedValue = _children.id_group;
+            Sex.IsChecked = _children.person.sex;
+            Name.Text = _children.person.firstname;
+            LastName.Text = _children.person.lastname;
+            Patronymic.Text = _children.person.patronymic;
         }
 
         private async void Save_Button_Click(object sender, RoutedEventArgs e)
@@ -59,7 +50,7 @@ namespace DedSad.View.Windowes
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка, что-то не так!");
+                MessageBoxHandler.ShowMessageBoxError("Проверьте корректность данных!");
             }
         }
 
@@ -73,14 +64,14 @@ namespace DedSad.View.Windowes
             var group = Group.SelectedItem as Group;
 
 
-            children.person.firstname = Name.Text;
-            children.person.lastname = LastName.Text;
-            children.person.patronymic = Patronymic.Text;
-            children.person.sex = Sex.IsChecked.Value;
-            children.person.id_role = 3;
-            children.id_group = group.id_group;
+            _children.person.firstname = Name.Text;
+            _children.person.lastname = LastName.Text;
+            _children.person.patronymic = Patronymic.Text;
+            _children.person.sex = Sex.IsChecked.Value;
+            _children.person.id_role = 3;
+            _children.id_group = group.id_group;
 
-            if (children.id_children == 0)
+            if (_children.id_children == 0)
             {
                 var partsAddresses = Addresses.Text.Split(',');
 
@@ -96,11 +87,11 @@ namespace DedSad.View.Windowes
                     house_number = partsAddresses[2]
                 };
                 var createdAddress = await addressRepo.Create(address);
-                children.person.id_address = createdAddress.id_address;
-                var person = await personRepo.Create(children.person);
-                children.id_person = person.id_person;
+                _children.person.id_address = createdAddress.id_address;
+                var person = await personRepo.Create(_children.person);
+                _children.id_person = person.id_person;
 
-                var result = await childrenRepo.Create(children);
+                var result = await childrenRepo.Create(_children);
                 var parents = new Parents
                 {
                     father = Fathers.Text,
@@ -111,10 +102,10 @@ namespace DedSad.View.Windowes
             }
             else
             {
-                var person = await personRepo.Update(children.person);
-                children.id_person = person.id_person;
+                var person = await personRepo.Update(_children.person);
+                _children.id_person = person.id_person;
 
-                var result = await childrenRepo.Update(children);
+                var result = await childrenRepo.Update(_children);
             }
 
 

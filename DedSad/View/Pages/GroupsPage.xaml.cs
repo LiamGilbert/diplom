@@ -1,28 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using DedSad.Models;
+using DedSad.Repository;
+using DedSad.Utils;
+using DedSad.View.Windowes;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DedSad.View.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для GroupsPage.xaml
-    /// </summary>
     public partial class GroupsPage : Page
     {
         public GroupsPage()
         {
             InitializeComponent();
+            Initialize();
+        }
+
+        private async void Initialize()
+        {
+            var repo = new GroupRepository();
+            var items = await repo.GetAllAsync();
+
+            ListViewGroup.ItemsSource = items;
+        }
+
+        private void NavigateToAdminPage(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminPage());
+        }
+
+        private void NavigateToEditPage(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (ListViewGroup.SelectedItem is Group group)
+            {
+                GroupEditWindow window = new GroupEditWindow(group);
+                window.ShowDialog();
+                Initialize();
+            }
+            else
+            {
+                MessageBoxHandler.ShowMessageBoxError("Выберите группу");
+            }
         }
     }
 }

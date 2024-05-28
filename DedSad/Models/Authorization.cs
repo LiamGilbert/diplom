@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DedSad.Models
 {
-    public class Autorization
+    public class Authorization
     {
         public int id_autorization { get; set; }
         public string login { get; set; } = String.Empty;

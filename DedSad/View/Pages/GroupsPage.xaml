@@ -16,17 +16,24 @@
         <StackPanel Grid.Column="0" HorizontalAlignment="Center">
         </StackPanel>
 
-        <ListView Grid.Column="1" Name="ListViewGroup">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Группа" Width="Auto"/>
-                    <GridViewColumn Header="Тип" Width="Auto"/>
-                    <GridViewColumn Header="Воспитатель" Width="Auto"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Column="1" Name="ListViewGroup" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Группа" Width="*" Binding="{Binding group_name}"/>
+                <DataGridTextColumn Header="Тип" Width="*" Binding="{Binding type.type}"/>
+                <DataGridTextColumn Header="Воспитатель" Width="*" Binding="{Binding person.FullName}"/>
+                <DataGridTemplateColumn Header="Управление" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Button Content="Изменить" Click="NavigateToEditPage"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <StackPanel>
-            <Button Background="Red" Content="Назад" Margin="0 30 0 0" Click="Button_Click"/>
+            <Button Background="Red" Content="Назад" Margin="0 30 0 0" Click="NavigateToAdminPage"/>
         </StackPanel>
     </Grid>
 </Page>
